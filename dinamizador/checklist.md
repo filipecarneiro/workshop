@@ -2,8 +2,6 @@
 title: "Checklist do Dinamizador"
 ---
 
-# Checklist do Dinamizador
-
 ---
 
 ## Com 1 semana de antecedência

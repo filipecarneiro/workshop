@@ -1,8 +1,12 @@
 title: "Hoje Vais Ser um Hacker"
 description: "Workshop de cibersegurança sobre palavras-passe e autenticação"
+author: "Filipe Carneiro"
 
 theme: minima
 lang: pt
+
+titles_from_headings:
+  strip_title: true
 
 exclude:
   - evento.yml

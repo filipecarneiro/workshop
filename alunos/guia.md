@@ -2,8 +2,6 @@
 title: "Guia do Participante"
 ---
 
-# Guia do Participante
-
 **Workshop: Hoje Vais Ser um Hacker**  
 *{{ site.data.evento.evento.nome }} — {{ site.data.evento.organizacao.nome }}, {{ site.data.evento.organizacao.localidade }}*  
 *{{ site.data.evento.evento.data }} às {{ site.data.evento.evento.hora_inicio }}*  

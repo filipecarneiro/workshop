@@ -2,8 +2,6 @@
 title: "Guia do Dinamizador"
 ---
 
-# Guia do Dinamizador
-
 Este documento é o script completo da sessão, bloco a bloco. Lê-o com antecedência e familiariza-te com cada transição.
 
 **Evento:** {{ site.data.evento.evento.nome }}  
