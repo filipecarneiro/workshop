@@ -5,14 +5,13 @@
 
 evento:
   nome: "Dar Vez à Ciência"
-  data: "2026-04-10"
-  hora_inicio: "10:00"
+  data: "2026-03-27"
+  hora_inicio: "10:35"
   duracao_minutos: 100
 
 organizacao:
   nome: "Agrupamento de Escolas de Valdevez"
   localidade: "Arcos de Valdevez"
-  pais: "Portugal"
 
 publico:
   descricao: "Alunos do 12º ano, Curso EAC (Eletrónica, Automação e Computadores)"

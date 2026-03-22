@@ -12,7 +12,7 @@ title: "Checklist do Dinamizador"
 - [ ] Configurar a VM (seguir `vm/README.md`) e testar o `hashcat` com a lista RockYou
 - [ ] Criar ou verificar a conta no [Mentimeter](https://www.mentimeter.com) e preparar a pergunta do quebra-gelo
 - [ ] Verificar se o URL do Mentimeter em `evento.yml` está correto e acessível
-- [ ] Confirmar com a escola o número de participantes e ajustar os ficheiros de hashes se necessário
+- [ ] Confirmar com a escola o número de participantes (previsto: {{ site.data.evento.publico.num_participantes }}) e ajustar os ficheiros de hashes se necessário
 - [ ] Testar o acesso às ferramentas online a partir de uma rede semelhante à da escola (algumas escolas bloqueiam certos domínios)
 
 ---
@@ -57,6 +57,6 @@ title: "Checklist do Dinamizador"
 
 ## No final
 
-- [ ] Partilhar o link do repositório com os alunos (e com o professor responsável)
+- [ ] Partilhar o link do repositório com os alunos (e com o professor responsável): [github.com/{{ site.data.evento.dinamizador.github }}/workshop-ciberseguranca-palavras-passe](https://github.com/{{ site.data.evento.dinamizador.github }}/workshop-ciberseguranca-palavras-passe)
 - [ ] Recolher feedback informal: o que correu bem, o que podia melhorar
 - [ ] Anotar sugestões de melhoria para o repositório — considera abrir uma issue ou pull request

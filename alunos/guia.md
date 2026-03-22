@@ -5,7 +5,9 @@ title: "Guia do Participante"
 # Guia do Participante
 
 **Workshop: Hoje Vais Ser um Hacker**  
-*{{ site.data.evento.evento.nome }} — {{ site.data.evento.organizacao.nome }}*
+*{{ site.data.evento.evento.nome }} — {{ site.data.evento.organizacao.nome }}, {{ site.data.evento.organizacao.localidade }}*  
+*{{ site.data.evento.evento.data }} às {{ site.data.evento.evento.hora_inicio }}*  
+*Sessão apresentada por {{ site.data.evento.dinamizador.nome }}, {{ site.data.evento.dinamizador.titulo }}*
 
 Bem-vindo a esta sessão de cibersegurança. Neste workshop vais perceber como os atacantes conseguem descobrir palavras-passe, e o mais importante: como te podes defender.
 

@@ -6,6 +6,12 @@ title: "Guia do Dinamizador"
 
 Este documento é o script completo da sessão, bloco a bloco. Lê-o com antecedência e familiariza-te com cada transição.
 
+**Evento:** {{ site.data.evento.evento.nome }}  
+**Data:** {{ site.data.evento.evento.data }} às {{ site.data.evento.evento.hora_inicio }}
+**Duração:** {{ site.data.evento.evento.duracao_minutos }} min  
+**Local:** {{ site.data.evento.organizacao.nome }}, {{ site.data.evento.organizacao.localidade }}  
+**Público:** {{ site.data.evento.publico.descricao }} ({{ site.data.evento.publico.num_participantes }} participantes)
+
 ---
 
 ## Visão geral
