@@ -30,7 +30,8 @@
 
 - [ ] Chegar ao espaço e verificar a ligação à internet
 - [ ] Testar a projeção — confirmar que o ecrã é visível de todos os lugares
-- [ ] Abrir o `apresentador/index.html` no browser (GitHub Pages ou localmente) e confirmar que os slides carregam
+- [ ] Correr `npm start` na pasta do repositório e verificar o IP mostrado no terminal
+- [ ] Abrir o link do apresentador (`http://IP:9000/apresentador/`) e confirmar que os slides carregam
 - [ ] Abrir o Mentimeter no computador do dinamizador (ecrã do apresentador)
 - [ ] Arrancar a VM e ter o terminal pronto
 - [ ] Testar [crackstation.net](https://crackstation.net) — colar um hash e confirmar que responde

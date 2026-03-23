@@ -308,6 +308,13 @@
 <script>
   var PEER_ID = 'wshack-presenter';
   var status = document.getElementById('conn-status');
+  var tentativa = 0;
+
+  // Auto-detecção: servidor local ou cloud PeerJS
+  var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
+  var peerOpts = isLocal
+    ? { host: location.hostname || 'localhost', port: Number(location.port) || 9000, path: '/peerjs', secure: false }
+    : {};
 
   Reveal.initialize({
     hash: false,
@@ -323,12 +330,13 @@
   });
 
   function ligar() {
-    var peer = new Peer();
+    var peer = new Peer(peerOpts);
 
     peer.on('open', function () {
       var conn = peer.connect(PEER_ID);
 
       conn.on('open', function () {
+        tentativa = 0;
         status.textContent = '● Ligado';
         status.className = 'ok';
       });
@@ -338,26 +346,26 @@
       });
 
       conn.on('close', function () {
-        status.textContent = '● A reconectar…';
-        status.className = 'err';
-        try { peer.destroy(); } catch (e) {}
-        setTimeout(ligar, 3000);
+        reconectar(peer);
       });
 
       conn.on('error', function () {
-        status.textContent = '● A reconectar…';
-        status.className = 'err';
-        try { peer.destroy(); } catch (e) {}
-        setTimeout(ligar, 3000);
+        reconectar(peer);
       });
     });
 
     peer.on('error', function () {
-      status.textContent = '● A reconectar…';
-      status.className = 'err';
-      try { peer.destroy(); } catch (e) {}
-      setTimeout(ligar, 3000);
+      reconectar(peer);
     });
+  }
+
+  function reconectar(peer) {
+    status.textContent = '● A reconectar…';
+    status.className = 'err';
+    try { peer.destroy(); } catch (e) {}
+    tentativa++;
+    var delay = Math.min(3000 * Math.pow(1.5, tentativa - 1), 30000);
+    setTimeout(ligar, delay);
   }
 </script>
 </body>

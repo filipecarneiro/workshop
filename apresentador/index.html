@@ -421,6 +421,12 @@
   var PEER_ID = 'wshack-presenter';
   var connections = [];
 
+  // Auto-detecção: servidor local ou cloud PeerJS
+  var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
+  var peerOpts = isLocal
+    ? { host: location.hostname || 'localhost', port: Number(location.port) || 9000, path: '/peerjs', secure: false }
+    : {};
+
   function updateConnCount() {
     document.getElementById('conn-count').textContent = connections.length;
   }
@@ -441,10 +447,11 @@
     transition: 'slide',
     plugins: [RevealHighlight, RevealNotes, RevealMarkdown]
   }).then(function () {
-    var peer = new Peer(PEER_ID);
+    peerOpts.id = PEER_ID;
+    var peer = new Peer(PEER_ID, peerOpts);
 
     peer.on('open', function () {
-      console.log('PeerJS: a escutar como', PEER_ID);
+      console.log('PeerJS: a escutar como', PEER_ID, isLocal ? '(servidor local)' : '(cloud)');
     });
 
     peer.on('connection', function (conn) {

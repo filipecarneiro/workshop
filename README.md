@@ -34,7 +34,10 @@ A apresentação usa **Reveal.js** com sincronização via **PeerJS** (WebRTC P2
 2. Os alunos acedem à raiz (index.html) → os slides sincronizam automaticamente
 ```
 
-A sincronização usa WebRTC (ligação direta entre o computador do apresentador e os dos alunos). Não é necessário instalar nada nem correr nenhum servidor.
+A sincronização usa WebRTC (ligação direta entre browsers). Funciona de duas formas:
+
+- **GitHub Pages** — usa o servidor cloud PeerJS (sem nada a instalar)
+- **Localmente** — corre `npm start` para ter um servidor PeerJS local (mais fiável)
 
 ### Ativar o GitHub Pages
 
@@ -48,6 +51,18 @@ https://filipecarneiro.github.io/workshop-ciberseguranca-palavras-passe/
 
 O dinamizador abre `apresentador/index.html` a partir de GitHub Pages ou localmente — ambos funcionam.
 
+### Modo local (recomendado para o workshop)
+
+O servidor cloud PeerJS pode ser instável. Para garantir que funciona no dia:
+
+```bash
+npm install
+npm start
+```
+
+O terminal mostra os links para o apresentador e para os alunos (IP local da rede).
+Os alunos acedem ao IP mostrado no terminal em vez do GitHub Pages.
+
 ---
 
 ## Estrutura do repositório
@@ -60,6 +75,9 @@ workshop-ciberseguranca-palavras-passe/
 ├── CONTRIBUTING.md              # Como contribuir
 │
 ├── index.html                   # Slides dos alunos (Reveal.js + PeerJS follower)
+│
+├── server.js                    # Servidor local: ficheiros estáticos + PeerJS signaling
+├── package.json                 # Dependências do servidor local
 │
 ├── apresentador/
 │   ├── index.html               # Slides do dinamizador (Reveal.js + PeerJS master + notas)
@@ -93,7 +111,7 @@ workshop-ciberseguranca-palavras-passe/
 1. Faz **fork** deste repositório para a tua conta GitHub
 2. Clona o repositório para o computador que vais usar no evento
 3. Segue a `apresentador/checklist.md` para preparar a sessão
-4. No dia: abre o `apresentador/index.html` no browser
+4. No dia: corre `npm start` e abre o link do apresentador mostrado no terminal
 
 ### Para contribuir com melhorias
 
