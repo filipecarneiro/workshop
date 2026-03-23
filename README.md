@@ -16,51 +16,37 @@ Uma sessão prática sobre palavras-passe e autenticação, com demonstração a
 
 ---
 
-## Apresentação com Reveal.js + Multiplex
+## Apresentação com Reveal.js + PeerJS
 
-A apresentação usa **Reveal.js com o plugin Multiplex**: o dinamizador controla os slides no `presenter.html` e os alunos seguem automaticamente no `index.html` — sem precisarem de carregar em nada.
+A apresentação usa **Reveal.js** com sincronização via **PeerJS** (WebRTC P2P). Não é necessário nenhum servidor — tudo funciona com ficheiros estáticos no GitHub Pages.
 
 ### Ficheiros principais
 
 | Ficheiro | Quem abre | Para quê |
 |---|---|---|
-| `index.html` | **Alunos** — link partilhado | Slides em modo seguidor (sincronizados) |
-| `presenter.html` | **Dinamizador** | Slides com controlo + notas de apresentador (prima **S**) |
+| `index.html` | **Dinamizador** | Slides com controlo + notas de apresentador (prima **S**) |
+| `alunos/index.html` | **Alunos** — link público | Slides sincronizados com ecrã de entrada |
 
 ### Fluxo de utilização
 
 ```
-Dinamizador → presenter.html → avança slide → todos os alunos veem o slide avançar em index.html
+1. O dinamizador abre index.html → aparece um código de 4 dígitos + QR code
+2. Os alunos acedem a alunos/index.html → introduzem o código → slides sincronizam automaticamente
 ```
 
-### Configurar e iniciar o servidor (fazer uma vez por sesso)
+A sincronização usa WebRTC (ligação direta entre o computador do apresentador e os dos alunos). Não é necessário instalar nada nem correr nenhum servidor.
 
-O servidor relay corre localmente no computador do apresentador. Os alunos ligam-se via rede local (Wi-Fi da escola).
-
-```powershell
-cd multiplex
-npm install   # só na primeira vez
-npm start
-```
-
-O terminal mostra dois URLs:
-
-```
-Apresentador:  http://localhost:1948/presenter.html
-Alunos:        http://192.168.x.x:1948/
-```
-
-- O `presenter.html` abre no computador do apresentador e mostra automaticamente o link a partilhar com os alunos.
-- Os alunos abrem o URL da rede local no browser — os slides avançam automaticamente.
-- O `socketId` e o `secret` são gerados automaticamente a cada sessão (não é necessário editar os ficheiros HTML).
-
-> O GitHub Pages continua válido para partilhar o guia e os manuais, mas a sincronização de slides exige o servidor local.
-
-### Ativar o GitHub Pages (opcional — para o guia dos alunos)
+### Ativar o GitHub Pages
 
 1. Vai a **Settings → Pages** no repositório
 2. Em *Source*, escolhe **Deploy from a branch** → `main` → `/ (root)`
-3. O link dos alunos fica em: `https://<utilizador>.github.io/<repositório>/`
+3. O link dos alunos fica em:
+
+```
+https://filipecarneiro.github.io/workshop-ciberseguranca-palavras-passe/alunos/
+```
+
+O dinamizador pode abrir o `index.html` diretamente a partir de GitHub Pages ou localmente — ambos funcionam.
 
 ---
 
@@ -73,12 +59,7 @@ workshop-ciberseguranca-palavras-passe/
 ├── LICENSE                      # Licença CC BY-SA 4.0
 ├── CONTRIBUTING.md              # Como contribuir
 │
-├── index.html                   # Slides dos alunos (Reveal.js — Multiplex follower)
-├── presenter.html               # Slides do dinamizador (Reveal.js — Multiplex master + notas)
-│
-├── multiplex/
-│   ├── server.js                # Servidor relay (Node.js + socket.io)
-│   └── package.json             # Dependências do servidor
+├── index.html                   # Slides do dinamizador (Reveal.js + PeerJS master + notas)
 │
 ├── dinamizador/
 │   ├── guia.md                  # Script completo da sessão, bloco a bloco
@@ -86,6 +67,7 @@ workshop-ciberseguranca-palavras-passe/
 │   └── notas.md                 # Dicas, perguntas frequentes, gestão do tempo
 │
 ├── alunos/
+│   ├── index.html               # Slides dos alunos (Reveal.js + PeerJS follower)
 │   └── guia.md                  # Guia de referência passo a passo para os alunos
 │
 ├── desafio/

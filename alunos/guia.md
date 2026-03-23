@@ -5,7 +5,13 @@
 
 Bem-vindo a esta sessão de cibersegurança. Neste workshop vais perceber como os atacantes conseguem descobrir palavras-passe, e o mais importante: como te podes defender.
 
-Os slides da apresentação avançam automaticamente no teu ecrã — segue-os em tempo real. Nos momentos de trabalho autónomo, usa este guia como referência.
+Os slides da apresentação avançam automaticamente no teu ecrã. Para entrar, acede a:
+
+**https://filipecarneiro.github.io/workshop-ciberseguranca-palavras-passe/alunos/**
+
+e introduz o código de 4 dígitos que está no ecrã do apresentador.
+
+Nos momentos de trabalho autónomo, usa este guia como referência.
 
 ---
 
