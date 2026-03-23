@@ -9,7 +9,7 @@ Os slides da apresentação avançam automaticamente no teu ecrã. Para entrar, 
 
 **https://filipecarneiro.github.io/workshop-ciberseguranca-palavras-passe/alunos/**
 
-e introduz o código de 4 dígitos que está no ecrã do apresentador.
+Os slides sincronizam automaticamente com o apresentador.
 
 Nos momentos de trabalho autónomo, usa este guia como referência.
 

@@ -52,50 +52,6 @@
     }
     .columns { display: flex; gap: 1.5em; }
     .columns > * { flex: 1; }
-
-    /* Ecrã de entrada */
-    #join-screen {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: #1a1a2e;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      font-family: sans-serif;
-      color: #fff;
-      text-align: center;
-      padding: 1em;
-    }
-    #join-screen h1 { color: #e74c3c; font-size: 2em; margin: 0 0 0.2em; }
-    #join-screen .sub { color: #95a5a6; margin: 0.2em 0; font-size: 1em; }
-    #join-screen input {
-      font-size: 3em;
-      width: 5em;
-      text-align: center;
-      letter-spacing: 0.3em;
-      padding: 0.15em;
-      border: 2px solid #3498db;
-      border-radius: 8px;
-      background: #111;
-      color: #27ae60;
-      font-family: monospace;
-      margin: 0.5em 0;
-    }
-    #join-screen input::placeholder { color: #444; letter-spacing: 0.2em; }
-    #join-screen button {
-      background: #27ae60;
-      color: #fff;
-      border: none;
-      padding: 0.6em 2em;
-      font-size: 1.2em;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    #join-screen button:hover { background: #2ecc71; }
-    #join-screen .hint { color: #555; font-size: 0.8em; margin-top: 1em; }
-
-    /* Indicador de ligação */
     #conn-status {
       position: fixed;
       top: 8px; right: 12px;
@@ -105,7 +61,6 @@
       padding: 0.2em 0.6em;
       border-radius: 4px;
       background: rgba(0,0,0,0.5);
-      display: none;
     }
     #conn-status.ok { color: #27ae60; }
     #conn-status.err { color: #e74c3c; }
@@ -113,18 +68,9 @@
 </head>
 <body>
 
-<div id="join-screen">
-  <h1>🔐 Hoje Vais Ser um Hacker</h1>
-  <p class="sub">Workshop de Cibersegurança · Palavras-passe e Autenticação</p>
-  <p style="margin-top:1.5em; color:#fff;">Introduz o código da sala:</p>
-  <input id="room-input" type="text" inputmode="numeric" maxlength="4" pattern="[0-9]*" placeholder="····" autofocus>
-  <button onclick="entrar()">Entrar →</button>
-  <p class="hint">O código está no ecrã do apresentador.</p>
-</div>
-
 <div id="conn-status" class="err">● A ligar…</div>
 
-<div class="reveal" style="display:none;">
+<div class="reveal">
 <div class="slides">
 
 <!-- ===================== CAPA ===================== -->
@@ -360,41 +306,25 @@
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script>
-  var params = new URLSearchParams(location.search);
-  var sala = params.get('sala');
-  if (sala && /^\d{4}$/.test(sala)) entrar(sala);
+  var PEER_ID = 'wshack-presenter';
+  var status = document.getElementById('conn-status');
 
-  document.getElementById('room-input').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') entrar();
+  Reveal.initialize({
+    hash: false,
+    controls: true,
+    progress: true,
+    slideNumber: true,
+    transition: 'slide',
+    plugins: [RevealHighlight, RevealNotes, RevealMarkdown]
+  }).then(function () {
+    ligar();
   });
 
-  function entrar(code) {
-    if (!code) code = document.getElementById('room-input').value.trim();
-    if (!/^\d{4}$/.test(code)) return;
-
-    document.getElementById('join-screen').style.display = 'none';
-    document.querySelector('.reveal').style.display = 'block';
-    document.getElementById('conn-status').style.display = 'block';
-    history.replaceState(null, '', '?sala=' + code);
-
-    Reveal.initialize({
-      hash: false,
-      controls: true,
-      progress: true,
-      slideNumber: true,
-      transition: 'slide',
-      plugins: [RevealHighlight, RevealNotes, RevealMarkdown]
-    }).then(function () {
-      ligar(code);
-    });
-  }
-
-  function ligar(room) {
-    var status = document.getElementById('conn-status');
+  function ligar() {
     var peer = new Peer();
 
     peer.on('open', function () {
-      var conn = peer.connect('wshack-' + room);
+      var conn = peer.connect(PEER_ID);
 
       conn.on('open', function () {
         status.textContent = '● Ligado';
@@ -406,17 +336,17 @@
       });
 
       conn.on('close', function () {
-        status.textContent = '● Desligado — a reconectar…';
+        status.textContent = '● A reconectar…';
         status.className = 'err';
         try { peer.destroy(); } catch (e) {}
-        setTimeout(function () { ligar(room); }, 3000);
+        setTimeout(ligar, 3000);
       });
 
       conn.on('error', function () {
-        status.textContent = '● Erro — a reconectar…';
+        status.textContent = '● A reconectar…';
         status.className = 'err';
         try { peer.destroy(); } catch (e) {}
-        setTimeout(function () { ligar(room); }, 3000);
+        setTimeout(ligar, 3000);
       });
     });
 
@@ -424,7 +354,7 @@
       status.textContent = '● A reconectar…';
       status.className = 'err';
       try { peer.destroy(); } catch (e) {}
-      setTimeout(function () { ligar(room); }, 3000);
+      setTimeout(ligar, 3000);
     });
   }
 </script>

@@ -63,72 +63,11 @@
       padding: 0.3em;
       z-index: 9999;
     }
-    #overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.95);
-      z-index: 10000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #overlay .content {
-      text-align: center;
-      max-width: 700px;
-      padding: 2em;
-      color: #fff;
-      font-family: sans-serif;
-    }
-    #overlay h2 { color: #27ae60; border: none; }
-    #overlay .room-code {
-      font-size: 4em;
-      font-weight: bold;
-      letter-spacing: 0.2em;
-      color: #27ae60;
-      font-family: monospace;
-      line-height: 1;
-      margin: 0.3em 0;
-    }
-    #overlay .url {
-      font-family: monospace;
-      font-size: 0.95em;
-      color: #3498db;
-      word-break: break-all;
-    }
-    #overlay button {
-      border: none;
-      padding: 0.5em 1.4em;
-      font-size: 0.9em;
-      border-radius: 4px;
-      cursor: pointer;
-      margin: 0 0.4em;
-    }
+    #presenter-banner a { color: #fff; }
   </style>
 </head>
 <body>
-<div id="presenter-banner">🎙️ VISTA DO APRESENTADOR — prima S para notas · alunos acedem via GitHub Pages</div>
-
-<div id="overlay">
-  <div class="content">
-    <h2>✅ Sessão pronta</h2>
-    <div style="display:flex;gap:2em;align-items:center;justify-content:center;flex-wrap:wrap;">
-      <div>
-        <div id="qr" style="border-radius:8px;background:#fff;display:inline-block;padding:8px;"></div>
-        <p style="color:#95a5a6;font-size:0.75em;margin:0.3em 0 0;">Digitaliza para entrar</p>
-      </div>
-      <div style="text-align:left;">
-        <p style="margin:0 0 0.3em;color:#95a5a6;font-size:0.85em;">Os alunos acedem a</p>
-        <div id="student-url" class="url"></div>
-        <p style="margin:0.6em 0 0.2em;color:#95a5a6;font-size:0.85em;">e introduzem o código</p>
-        <div id="room-display" class="room-code"></div>
-        <p style="color:#95a5a6;font-size:0.85em;margin:0.4em 0 0;">Ligados: <span id="conn-count">0</span> aluno(s)</p>
-      </div>
-    </div>
-    <div style="margin-top:1.5em;display:flex;gap:0.8em;justify-content:center;flex-wrap:wrap;">
-      <button onclick="copiarUrl()" style="background:#2980b9;color:#fff;">📋 Copiar link</button>
-      <button onclick="document.getElementById('overlay').style.display='none'" style="background:#27ae60;color:#fff;">Iniciar →</button>
-    </div>
-  </div>
-</div>
+<div id="presenter-banner">🎙️ prima S para notas · alunos: <a href="https://filipecarneiro.github.io/workshop-ciberseguranca-palavras-passe/alunos/" target="_blank">…/alunos/</a> · ligados: <span id="conn-count">0</span></div>
 
 <div class="reveal">
 <div class="slides">
@@ -478,40 +417,9 @@
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
-  // Código da sala: 4 dígitos, persistido em sessionStorage
-  var ROOM = sessionStorage.getItem('ws_room');
-  if (!ROOM) {
-    ROOM = String(Math.floor(1000 + Math.random() * 9000));
-    sessionStorage.setItem('ws_room', ROOM);
-  }
-
-  var PEER_ID = 'wshack-' + ROOM;
+  var PEER_ID = 'wshack-presenter';
   var connections = [];
-
-  // URL base dos alunos (GitHub Pages)
-  var STUDENT_BASE = 'https://filipecarneiro.github.io/workshop-ciberseguranca-palavras-passe/alunos/';
-  var STUDENT_URL = STUDENT_BASE + '?sala=' + ROOM;
-
-  // Overlay: mostrar código e QR
-  document.getElementById('room-display').textContent = ROOM;
-  document.getElementById('student-url').textContent = STUDENT_BASE;
-  new QRCode(document.getElementById('qr'), {
-    text: STUDENT_URL,
-    width: 200,
-    height: 200,
-    colorDark: '#000000',
-    colorLight: '#ffffff'
-  });
-
-  function copiarUrl() {
-    navigator.clipboard.writeText(STUDENT_URL).then(function () {
-      var btn = document.querySelector('#overlay button');
-      btn.textContent = '✓ Copiado!';
-      setTimeout(function () { btn.textContent = '📋 Copiar link'; }, 2000);
-    });
-  }
 
   function updateConnCount() {
     document.getElementById('conn-count').textContent = connections.length;
@@ -557,12 +465,6 @@
 
     peer.on('error', function (err) {
       console.warn('PeerJS erro:', err);
-      if (err.type === 'unavailable-id') {
-        sessionStorage.removeItem('ws_room');
-        ROOM = String(Math.floor(1000 + Math.random() * 9000));
-        sessionStorage.setItem('ws_room', ROOM);
-        location.reload();
-      }
     });
 
     Reveal.on('slidechanged', broadcastState);

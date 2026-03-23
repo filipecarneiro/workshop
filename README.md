@@ -30,8 +30,8 @@ A apresentação usa **Reveal.js** com sincronização via **PeerJS** (WebRTC P2
 ### Fluxo de utilização
 
 ```
-1. O dinamizador abre index.html → aparece um código de 4 dígitos + QR code
-2. Os alunos acedem a alunos/index.html → introduzem o código → slides sincronizam automaticamente
+1. O dinamizador abre index.html → a apresentação inicia e fica à espera de ligações
+2. Os alunos acedem a alunos/index.html → os slides sincronizam automaticamente
 ```
 
 A sincronização usa WebRTC (ligação direta entre o computador do apresentador e os dos alunos). Não é necessário instalar nada nem correr nenhum servidor.

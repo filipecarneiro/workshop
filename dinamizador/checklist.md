@@ -7,7 +7,7 @@
 - [ ] Criar ou verificar a conta no [Mentimeter](https://www.mentimeter.com) e preparar a pergunta do quebra-gelo
 - [ ] Confirmar com a escola o número de participantes e ajustar os ficheiros de hashes se necessário
 - [ ] Testar o acesso às ferramentas online a partir de uma rede semelhante à da escola (algumas escolas bloqueiam certos domínios)
-- [ ] Testar a apresentação: abrir `index.html` no browser e confirmar que o código da sala aparece no overlay
+- [ ] Testar a apresentação: abrir `index.html` no browser e confirmar que carrega corretamente
 
 ---
 
@@ -30,7 +30,7 @@
 
 - [ ] Chegar ao espaço e verificar a ligação à internet
 - [ ] Testar a projeção — confirmar que o ecrã é visível de todos os lugares
-- [ ] Abrir o `index.html` no browser (GitHub Pages ou localmente) e confirmar que o overlay aparece com o código da sala e QR code
+- [ ] Abrir o `index.html` no browser (GitHub Pages ou localmente) e confirmar que os slides carregam
 - [ ] Abrir o Mentimeter no computador do dinamizador (ecrã do apresentador)
 - [ ] Arrancar a VM e ter o terminal pronto
 - [ ] Testar [crackstation.net](https://crackstation.net) — colar um hash e confirmar que responde
