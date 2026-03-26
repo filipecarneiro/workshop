@@ -466,11 +466,14 @@
     transition: 'slide',
     plugins: [RevealHighlight, RevealNotes, RevealMarkdown]
   }).then(function () {
+    // Não inicializar PeerJS na janela de notas do apresentador (receiver)
+    if (new URLSearchParams(location.search).has('receiver')) return;
+
     peerOpts.id = PEER_ID;
     var peer = new Peer(PEER_ID, peerOpts);
 
     peer.on('open', function () {
-      console.log('PeerJS: a escutar como', PEER_ID, isLocal ? '(servidor local)' : '(cloud)');
+      console.log('PeerJS: a escutar como', PEER_ID, '(' + location.hostname + ')');
     });
 
     peer.on('connection', function (conn) {
