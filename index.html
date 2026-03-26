@@ -4,11 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hoje Vais Ser um Hacker</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/night.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
   <style>
+    .reveal, .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Source Sans Pro', ui-sans-serif, system-ui, sans-serif;
+    }
     :root {
       --accent: #e74c3c;
       --accent2: #27ae60;
@@ -77,13 +81,14 @@
 <section data-background-color="#1a1a2e">
   <h1 style="margin-top:0.5em;">🔐 Hoje Vais Ser um Hacker</h1>
   <p class="center" style="color:#95a5a6; margin-top:1em;">Workshop de Cibersegurança · Palavras-passe e Autenticação</p>
-  <p class="center muted" style="margin-top:2em;">Segue os slides em tempo real no teu computador ou telemóvel</p>
+  <p class="center muted" style="margin-top:2em;">Segue os slides em tempo real no teu computador.<br/>Escreve este endereço no teu navegador:</p>
+  <p class="center" style="font-size:1.8em; font-weight:bold; color:#3498db;"><a href="http://192.168.1.176:9000/" target="_blank" style="color:#3498db;">http://192.168.1.176:9000/</a></p>
 </section>
 
 <!-- ===================== BLOCO 1: QUEBRA-GELO ===================== -->
 <section>
   <section>
-    <h2>🎯 Bloco 1 — Quebra-gelo <span class="tag">10 min</span></h2>
+    <h2>🎯 Bloco 1 — Quebra-gelo</h2>
     <p class="center" style="font-size:1.2em; color:#e67e22; margin-top:1em;">Qual é o tipo de palavra-passe que usas?</p>
     <p class="center muted">Responde no Mentimeter →</p>
     <p class="center" style="font-size:1.5em; font-weight:bold;"><a href="https://www.menti.com/alh8o15iymaj" target="_blank" style="color:#e67e22;">menti.com</a></p>
@@ -104,7 +109,7 @@
 <!-- ===================== BLOCO 2: COMO FUNCIONAM ===================== -->
 <section>
   <section>
-    <h2>🔧 Bloco 2 — Como funcionam? <span class="tag">15 min</span></h2>
+    <h2>🔧 Bloco 2 — Como funcionam?</h2>
     <p>O servidor nunca guarda a tua palavra-passe <span class="highlight">em claro</span>.</p>
     <p style="margin-top:1em;">Quando crias uma conta, a tua palavra-passe é <strong>transformada</strong> antes de ser guardada.</p>
   </section>
@@ -151,7 +156,7 @@
 <!-- ===================== BLOCO 3: DEMONSTRAÇÃO ===================== -->
 <section>
   <section>
-    <h2>💣 Bloco 3 — Força Bruta ao Vivo <span class="tag">15 min</span></h2>
+    <h2>💣 Bloco 3 — Força Bruta ao Vivo</h2>
     <p>Quebrar palavras-passe fracas é <span class="highlight">trivial</span> com ferramentas gratuitas.</p>
     <pre><code class="bash">hashcat -m 0 -a 0 hashes.txt rockyou.txt</code></pre>
   </section>
@@ -172,7 +177,7 @@
 <!-- ===================== BLOCO 4: HAVEIBEENPWNED ===================== -->
 <section>
   <section>
-    <h2>🔍 Bloco 4 — Já foste hackeado? <span class="tag">20 min</span></h2>
+    <h2>🔍 Bloco 4 — Já foste hackeado?</h2>
     <p class="center" style="font-size:1.3em; margin-top:1em;">Vai a</p>
     <p class="center" style="font-size:1.8em; font-weight:bold; color:#3498db;"><a href="https://haveibeenpwned.com" target="_blank" style="color:#3498db;">haveibeenpwned.com</a></p>
     <p class="center">e verifica o teu endereço de e-mail.</p>
@@ -204,7 +209,7 @@
 <!-- ===================== BLOCO 5: BOAS PRÁTICAS ===================== -->
 <section>
   <section>
-    <h2>🛡️ Bloco 5 — Boas Práticas <span class="tag">20 min</span></h2>
+    <h2>🛡️ Bloco 5 — Boas Práticas</h2>
   </section>
   <section>
     <h2>Frases-passe</h2>
@@ -248,7 +253,7 @@
 <!-- ===================== BLOCO 6: DESAFIO ===================== -->
 <section>
   <section>
-    <h2>⚔️ Bloco 6 — Mini-desafio Final <span class="tag">15 min</span></h2>
+    <h2>⚔️ Bloco 6 — Mini-desafio Final</h2>
     <p>Experimenta o papel do <span class="highlight">atacante</span> — de forma controlada e pedagógica.</p>
     <div class="columns" style="margin-top:1em;">
       <div class="step-box"><strong>Equipa A</strong><br>hashes-equipa-A.txt<br><em class="muted">Fácil</em></div>
@@ -280,7 +285,7 @@
 <!-- ===================== BLOCO 7: CONCLUSÃO ===================== -->
 <section>
   <section>
-    <h2>✅ Bloco 7 — Conclusão <span class="tag">5 min</span></h2>
+    <h2>✅ Bloco 7 — Conclusão</h2>
     <h3 style="text-align:center; margin-top:1em;">3 coisas para fazer <em>hoje</em></h3>
     <ol>
       <li>Usa uma <strong>frase-passe diferente</strong> em cada serviço importante</li>
@@ -310,10 +315,9 @@
   var status = document.getElementById('conn-status');
   var tentativa = 0;
 
-  // Auto-detecção: servidor local ou cloud PeerJS
-  var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
-  var peerOpts = isLocal
-    ? { host: location.hostname || 'localhost', port: Number(location.port) || 9000, path: '/peerjs', secure: false }
+  // Liga sempre ao servidor PeerJS que serviu esta página (localhost ou IP de rede local)
+  var peerOpts = location.protocol !== 'file:'
+    ? { host: location.hostname, port: Number(location.port) || 9000, path: '/peerjs', secure: false }
     : {};
 
   Reveal.initialize({

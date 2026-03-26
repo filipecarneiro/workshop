@@ -12,6 +12,12 @@ const peerServer = ExpressPeerServer(server, {
   allow_discovery: false
 });
 app.use('/peerjs', peerServer);
+app.use(function (req, res, next) {
+  if (req.path.endsWith('.html') || req.path === '/') {
+    res.setHeader('Cache-Control', 'no-store');
+  }
+  next();
+});
 app.use(express.static('.'));
 
 function getLocalIP() {

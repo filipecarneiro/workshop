@@ -4,11 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apresentador — Hoje Vais Ser um Hacker</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/night.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
   <style>
+    .reveal, .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Source Sans Pro', ui-sans-serif, system-ui, sans-serif;
+    }
     :root {
       --accent: #e74c3c;
       --accent2: #27ae60;
@@ -437,10 +441,9 @@
   var PEER_ID = 'wshack-presenter';
   var connections = [];
 
-  // Auto-detecção: servidor local ou cloud PeerJS
-  var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
-  var peerOpts = isLocal
-    ? { host: location.hostname || 'localhost', port: Number(location.port) || 9000, path: '/peerjs', secure: false }
+  // Liga sempre ao servidor PeerJS que serviu esta página (localhost ou IP de rede local)
+  var peerOpts = location.protocol !== 'file:'
+    ? { host: location.hostname, port: Number(location.port) || 9000, path: '/peerjs', secure: false }
     : {};
 
   function updateConnCount() {
